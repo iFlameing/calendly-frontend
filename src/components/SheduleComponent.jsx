@@ -13,26 +13,27 @@ export default function Shedule({ ...props }) {
   const [date, setDate] = useState("");
   const [discription, setDiscription] = useState("");
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     const opts = {
       name,
       email,
       duration,
       date,
-      discription
+      discription,
     };
     event.preventDefault();
-    fetch("http://localhost:8080/users/114407746104229717172/schedule", {
+    const googleid = localStorage.getItem("googleId");
+    fetch(`https://fast-dawn-06134.herokuapp.com/users/${googleid}/schedule`, {
       method: "post",
       headers: new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }),
-      body: JSON.stringify(opts)
+      body: JSON.stringify(opts),
     })
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         props.history.replace("/event/user/me");
       });
   };
@@ -50,7 +51,7 @@ export default function Shedule({ ...props }) {
               placeholder="Enter Your New Event"
               multiline
               variant="filled"
-              onChange={event => setName(event.target.value)}
+              onChange={(event) => setName(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -60,7 +61,7 @@ export default function Shedule({ ...props }) {
               placeholder="Platform name"
               multiline
               variant="filled"
-              onChange={event => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />{" "}
           </Grid>
           <Grid itemxs={12} md={6}>
@@ -70,7 +71,7 @@ export default function Shedule({ ...props }) {
               placeholder="Enter the duration"
               multiline
               variant="filled"
-              onChange={event => setDuration(event.target.value)}
+              onChange={(event) => setDuration(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -80,7 +81,7 @@ export default function Shedule({ ...props }) {
               placeholder="Date Of your Interview"
               multiline
               variant="filled"
-              onChange={event => setDate(event.target.value)}
+              onChange={(event) => setDate(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -90,7 +91,7 @@ export default function Shedule({ ...props }) {
               placeholder="Discription"
               multiline
               variant="filled"
-              onChange={event => setDiscription(event.target.value)}
+              onChange={(event) => setDiscription(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>

@@ -13,24 +13,25 @@ export default function NewEvent({ ...props }) {
   const [link, setLink] = useState("");
   const [discription, setDiscription] = useState("");
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     const opts = {
       title,
       link,
-      duration
+      duration,
     };
+    const googleid = localStorage.getItem("googleId");
     event.preventDefault();
-    fetch("http://localhost:8080/users/114407746104229717172/event", {
+    fetch(`https://fast-dawn-06134.herokuapp.com/users/${googleid}/event`, {
       method: "post",
       headers: new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }),
-      body: JSON.stringify(opts)
+      body: JSON.stringify(opts),
     })
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         props.history.push("/event/user/me");
       });
   };
@@ -48,7 +49,7 @@ export default function NewEvent({ ...props }) {
               placeholder="Enter Your New Event"
               multiline
               variant="filled"
-              onChange={event => setTitle(event.target.value)}
+              onChange={(event) => setTitle(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -58,7 +59,7 @@ export default function NewEvent({ ...props }) {
               placeholder="Platform name"
               multiline
               variant="filled"
-              onChange={event => setLocation(event.target.value)}
+              onChange={(event) => setLocation(event.target.value)}
             />{" "}
           </Grid>
           <Grid itemxs={12} md={6}>
@@ -68,7 +69,7 @@ export default function NewEvent({ ...props }) {
               placeholder="Enter the duration"
               multiline
               variant="filled"
-              onChange={event => setDuration(event.target.value)}
+              onChange={(event) => setDuration(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -78,7 +79,7 @@ export default function NewEvent({ ...props }) {
               placeholder="Date Of your Interview"
               multiline
               variant="filled"
-              onChange={event => setLink(event.target.value)}
+              onChange={(event) => setLink(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -88,7 +89,7 @@ export default function NewEvent({ ...props }) {
               placeholder="Discription"
               multiline
               variant="filled"
-              onChange={event => setDiscription(event.target.value)}
+              onChange={(event) => setDiscription(event.target.value)}
             />
           </Grid>
           <Grid item xs={12} md={6}>

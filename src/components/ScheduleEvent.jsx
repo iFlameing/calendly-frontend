@@ -9,14 +9,15 @@ const Events = styled(Container)`
   padding: 12px;
 `;
 
-const ScheduleEvent = props => {
+const ScheduleEvent = (props) => {
   const [items, setItems] = useState([]);
+  const googleid = localStorage.getItem("googleId");
   useEffect(() => {
-    fetch("http://localhost:8080/users/114407746104229717172/schedule")
-      .then(response => {
+    fetch(`https://fast-dawn-06134.herokuapp.com/users/${googleid}/schedule`)
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setItems(Object.values(data.schedules));
       });
   }, []);
@@ -26,7 +27,7 @@ const ScheduleEvent = props => {
       <Events>
         <Grid container spacing={2}>
           {items.length > 0
-            ? items.map(item => (
+            ? items.map((item) => (
                 <EventItem
                   title={item.name}
                   length={item.duration}
