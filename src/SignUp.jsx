@@ -84,7 +84,7 @@ const SignUP = (props) => {
             right away! <br />
           </Typography>
           <GoogleLogin
-            clientId="491502636429-bbcurj56u4gcbb5dobv8a3bcfick01bu.apps.googleusercontent.com"
+            clientId="enter your clientId"
             render={(renderProps) => (
               <Button
                 variant="contained"
