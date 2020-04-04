@@ -12,6 +12,8 @@ import FileCopy from "@material-ui/icons/FileCopy";
 import Settings from "@material-ui/icons/Settings";
 import Edit from "@material-ui/icons/Edit";
 import Link2 from "@material-ui/icons/Link";
+import Link from "@material-ui/core/Link";
+
 import Delete from "@material-ui/icons/Delete";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Visibility from "@material-ui/icons/Visibility";
@@ -27,7 +29,7 @@ import { Route } from "react-router-dom";
 const EventCard = styled(Card)`
   min-height: 80px;
 `;
-const VisibilityCheckbox = props => (
+const VisibilityCheckbox = (props) => (
   <Checkbox
     {...props}
     aria-label="Visibility"
@@ -74,15 +76,15 @@ const EventMenu = () => (
   </React.Fragment>
 );
 const EventTimerIcon = styled(Timer).attrs({
-  color: "primary"
+  color: "primary",
 })``;
 const EventCardHeader = styled(CardHeader).attrs({
   avatar: <EventTimerIcon />,
   action: <EventMenu />,
   titleTypographyProps: {
     noWrap: true,
-    style: { maxWidth: "134px" }
-  }
+    style: { maxWidth: "134px" },
+  },
 })``;
 
 export const EventItem = ({
@@ -94,13 +96,15 @@ export const EventItem = ({
 }) => {
   const EventBody = ({ children }) => (
     <CardContent>
-      <Button
-        onClick={() => {
+      <Link
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
           props.history.replace(`/${path}`);
         }}
       >
         {children}
-      </Button>
+      </Link>
     </CardContent>
   );
   return (
